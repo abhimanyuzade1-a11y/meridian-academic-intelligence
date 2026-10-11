@@ -1,0 +1,5 @@
+meridian.db
+meridian.db-shm
+meridian.db-wal
+__pycache__/
+*.py[cod]
