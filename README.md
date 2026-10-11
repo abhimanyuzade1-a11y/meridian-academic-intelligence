@@ -1,32 +1,64 @@
 # Meridian Academic Intelligence
 
-A local-first student results platform for marks administration, validation, review, reporting, and academic analysis. Student data stays in the workspace's SQLite database; the app makes no external API calls. The included records are clearly labeled **Sample data**.
+A student results platform for organizing academic records, calculating grades, reviewing results, and understanding student performance.
+
+## Live Demo
+
+[Open Meridian Academic Intelligence](https://meridian-academic-intelligence.onrender.com)
+
+> **Demo only:** The app uses sample records and does not have secure user accounts. Anyone with the public link can switch roles and edit records. Do not enter private or real student information.
+
+## What it can do
+
+- **Academic overview:** See overall attainment, pass rates, grade distribution, and students who may need support.
+- **Student records:** Browse, search, and filter students by class.
+- **Subjects and terms:** Manage subjects, academic terms, mark limits, pass marks, and grading rules.
+- **Record results:** Enter marks or import them from a CSV file. Review validation messages and duplicate records before saving.
+- **Calculate grades:** Automatically calculate totals, percentages, grades, pass/fail status, and an indicative GPA.
+- **Review and publish:** Teachers can submit results for review. Administrators can approve and publish them. Actions appear in the audit history.
+- **Rank students:** View overall rankings and subject leaders. Students with missing marks are not ranked until their results are comparable.
+- **View report cards:** Review a student's subject results and grade explanations, then print or save the report as a PDF.
+- **Explore analytics:** Compare class and subject performance and view results across terms.
+- **Export data:** Download CSV files for use in spreadsheet software.
+
+## Sample subjects
+
+The current sample dataset includes:
+
+- RPA
+- Big Data
+- Blockchain Technology
+- DSA
+- C++
+
+The app labels its demonstration records as sample data.
+
+## Roles in the demo
+
+The role selector demonstrates different views:
+
+- **Administrator:** Manage student and subject records, terms, grading rules, approvals, and publication.
+- **Teacher:** Enter or import marks and submit results for review.
+- **Student:** View published results and individual ranking information.
+
+These roles are **not protected by login accounts**. The selector is for demonstrating the workflow only; it does not verify anyone's identity or prevent visitors from accessing other roles.
+
+## Technology
+
+- **Python** — local web server and application backend
+- **SQLite** — database for students, subjects, terms, marks, and audit events
+- **HTML, CSS, and JavaScript** — responsive user interface
+- **Render** — hosts the public demo
+
+The app uses Python's standard library and does not require external API keys.
 
 ## Run locally
 
-Requires Python 3.10 or newer. There are no Python package installs or service credentials.
+You need Python 3.10 or newer.
 
-1. Open a terminal in this folder.
-2. Run `python server.py` (Windows users can also use `py server.py`).
-3. Open [http://localhost:8000](http://localhost:8000).
+1. Download or clone this repository.
+2. Open a terminal in the project folder.
+3. Start the app:
 
-The server creates `meridian.db` in this folder the first time it runs. This database persists when the server stops or the page reloads. To start with an empty database, stop the server, delete `meridian.db`, and start it again; the sample database will be created automatically. Keep a copy of `meridian.db` to back up local records.
-
-## Included workflows
-
-- **Overview:** current term attainment, pass rates, grade distribution, support flags, and subject result snapshots.
-- **Results:** searchable and filterable register, CSV export, mark entry, visible grade rules, and submit / return / approve / publish audit events.
-- **Students, subjects, and terms:** add and edit student and subject records; configure subject maxima, pass marks, subject weights, and the A*–D percentage bands; add terms and choose the current term.
-- **Import marks:** download a CSV template; upload CSV, map source columns, preview row-level validation, detect duplicate rows, identify existing marks, and import valid rows. Existing marks are updated. Invalid rows are not committed.
-- **Report cards:** individual term report, subject results, grading explanation, print dialog (choose Save as PDF).
-- **Analytics:** class and subject filters, term comparisons, grade distribution, subject mean/pass-rate comparisons, and students needing support.
-- **Student rankings:** overall standings use complete recorded marks and average percentage; subject leaders are calculated per subject. Ties share a place, incomplete students are shown without a rank, and rankings refresh when marks change. Students see only their own position after publication.
-- **Notifications and audit trail:** local event history for initialized sample data, record changes, imports, and workflow actions.
-
-## Calculation and workflow notes
-
-Percentage is `score / subject maximum × 100`. A* / A / B / C / D begin at 90 / 80 / 70 / 60 / 50 percent; E is at or above the subject-specific pass threshold and U is below it. The displayed GPA maps each subject percentage linearly to 0–4 across 50–100% and averages using subject weights. It is an indicative estimate, not an institutional GPA standard. Teachers can submit and return a term for correction; administrators can approve submitted results and publish approved results. The role switch is a local workflow demonstration, not an identity or authentication system. This app is intended for a single trusted local environment and is not hardened for multi-user network deployment. The Abhimanyu Zade first-place example is only applied to marks tagged as sample; marks imported or entered by a user are tagged separately and are never overwritten by that sample-data refresh.
-
-## Local data and limitations
-
-All student and assessment records are stored locally in SQLite. The app does not send records to external services. The interface loads DM Sans and Manrope from Google Fonts when internet access is available; system sans-serif fallbacks keep it usable offline. CSV import supports comma-delimited UTF-8 files with a header row. Spreadsheet workbooks should be exported as CSV first.
+   ```bash
+   python server.py
