@@ -219,4 +219,4 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self,*args):pass
 
 if __name__=='__main__':
-    init(); port=int(os.environ.get('PORT','8000')); print(f'Meridian running at http://localhost:{port}'); ThreadingHTTPServer(('127.0.0.1',port),Handler).serve_forever()
+    init(); port=int(os.environ.get('PORT','8000')); host=os.environ.get('HOST','0.0.0.0'); print(f'Meridian running at http://{host}:{port}'); ThreadingHTTPServer((host,port),Handler).serve_forever()
